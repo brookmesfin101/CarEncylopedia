@@ -1,0 +1,8 @@
+C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\bin\Debug\netstandard2.0\CarEncylopedia.DAL.deps.json
+C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\bin\Debug\netstandard2.0\CarEncylopedia.DAL.dll
+C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\bin\Debug\netstandard2.0\CarEncylopedia.DAL.pdb
+C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.AssemblyInfoInputs.cache
+C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.AssemblyInfo.cs
+C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.dll
+C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.pdb
+C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.csprojAssemblyReference.cache
