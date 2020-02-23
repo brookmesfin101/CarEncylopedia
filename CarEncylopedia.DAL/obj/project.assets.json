@@ -179,23 +179,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\brook.mesfin\\.nuget\\packages\\": {},
+    "C:\\Users\\brook\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\brook.mesfin\\source\\repos\\CarEncylopedia\\CarEncylopedia.DAL\\CarEncylopedia.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\brook\\source\\repos\\CarEncylopedia\\CarEncylopedia.DAL\\CarEncylopedia.DAL.csproj",
       "projectName": "CarEncylopedia.DAL",
-      "projectPath": "C:\\Users\\brook.mesfin\\source\\repos\\CarEncylopedia\\CarEncylopedia.DAL\\CarEncylopedia.DAL.csproj",
-      "packagesPath": "C:\\Users\\brook.mesfin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\brook.mesfin\\source\\repos\\CarEncylopedia\\CarEncylopedia.DAL\\obj\\",
+      "projectPath": "C:\\Users\\brook\\source\\repos\\CarEncylopedia\\CarEncylopedia.DAL\\CarEncylopedia.DAL.csproj",
+      "packagesPath": "C:\\Users\\brook\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\brook\\source\\repos\\CarEncylopedia\\CarEncylopedia.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\brook.mesfin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\brook\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -236,7 +236,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

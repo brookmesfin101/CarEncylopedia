@@ -6,3 +6,11 @@ C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\n
 C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.dll
 C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.pdb
 C:\Users\brook.mesfin\source\repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.csprojAssemblyReference.cache
+C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.DAL\bin\Debug\netstandard2.0\CarEncylopedia.DAL.deps.json
+C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.DAL\bin\Debug\netstandard2.0\CarEncylopedia.DAL.dll
+C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.DAL\bin\Debug\netstandard2.0\CarEncylopedia.DAL.pdb
+C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.csprojAssemblyReference.cache
+C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.AssemblyInfoInputs.cache
+C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.AssemblyInfo.cs
+C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.dll
+C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.DAL\obj\Debug\netstandard2.0\CarEncylopedia.DAL.pdb
