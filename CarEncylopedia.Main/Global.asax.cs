@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using CarEncylopedia.Service.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,12 +12,15 @@ namespace CarEncylopedia.Main
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        public MapperConfiguration mapper;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            mapper = ServicesMapperConfiguration.Configure();
         }
     }
 }

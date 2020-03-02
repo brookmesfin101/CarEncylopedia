@@ -1,4 +1,7 @@
-﻿using CarEncylopedia.DAL.Repositories;
+﻿using AutoMapper;
+using CarEncylopedia.DAL.Models;
+using CarEncylopedia.DAL.Repositories;
+using CarEncylopedia.Service.DTOModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,15 +11,20 @@ namespace CarEncylopedia.Service
     public class HomeService
     {
         CarRepository carRepo;
+        private readonly IMapper _mapper;
 
-        public HomeService()
+        public HomeService(IMapper mapper)
         {
             carRepo = new CarRepository();
+            _mapper = mapper;
         }
 
-        public List<List<string>> GetCars()
+        public List<CarDTO> GetCars()
         {
-            return carRepo.GetCars();
+            var cars = carRepo.GetCars();
+            var carDTOs = _mapper.Map<List<CarDTO>>(cars);
+
+            return carDTOs;
         }
     }
 }

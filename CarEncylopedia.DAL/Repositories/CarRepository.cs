@@ -10,7 +10,7 @@ namespace CarEncylopedia.DAL.Repositories
 {
     public class CarRepository
     {
-        List<List<string>> cars;
+        List<Car> cars;
 
         public CarRepository()
         {
@@ -19,7 +19,7 @@ namespace CarEncylopedia.DAL.Repositories
             this.cars = ProcessCSV(path);
         }
 
-        private List<List<string>> ProcessCSV (string path)
+        private List<Car> ProcessCSV (string path)
         {
             var raw = File.ReadAllLines(path).ToList();
             var rows = new List<string>()
@@ -47,9 +47,9 @@ namespace CarEncylopedia.DAL.Repositories
                 processed.Add(cols.Take(7).ToList());
             }
 
-            CreateCars(processed);
+            var cars = CreateCars(processed);
 
-            return processed;
+            return cars;
         }
 
         private List<Car> CreateCars(List<List<string>> processed)
@@ -122,7 +122,7 @@ namespace CarEncylopedia.DAL.Repositories
             return MSRP;
         }
 
-        public List<List<string>> GetCars()
+        public List<Car> GetCars()
         {
             return cars;
         }
