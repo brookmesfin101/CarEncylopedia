@@ -162,3 +162,17 @@ C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.Main\obj\Debug\CarEncy
 C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.Main\obj\Debug\CarEncylopedia.Main.csproj.CopyComplete
 C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.Main\obj\Debug\CarEncylopedia.Main.dll
 C:\Users\brook\Source\Repos\CarEncylopedia\CarEncylopedia.Main\obj\Debug\CarEncylopedia.Main.pdb
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\Autofac.dll
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\Autofac.Integration.Mvc.dll
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\AutoMapper.dll
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\Autofac.pdb
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\Autofac.xml
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\Autofac.Integration.Mvc.xml
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\AutoMapper.pdb
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\AutoMapper.xml
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\brook\source\repos\CarEncylopedia\CarEncylopedia.Main\bin\System.Threading.Tasks.Extensions.xml

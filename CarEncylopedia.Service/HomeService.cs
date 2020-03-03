@@ -2,13 +2,14 @@
 using CarEncylopedia.DAL.Models;
 using CarEncylopedia.DAL.Repositories;
 using CarEncylopedia.Service.DTOModels;
+using CarEncylopedia.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CarEncylopedia.Service
 {
-    public class HomeService
+    public class HomeService : IHomeService
     {
         CarRepository carRepo;
         private readonly IMapper _mapper;

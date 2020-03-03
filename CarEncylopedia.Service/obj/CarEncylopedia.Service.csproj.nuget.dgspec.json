@@ -41,6 +41,10 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "Autofac.Mvc5": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -106,6 +110,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Autofac.Mvc5": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",

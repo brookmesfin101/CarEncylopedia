@@ -12,7 +12,6 @@ namespace CarEncylopedia.Main
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        public MapperConfiguration mapper;
 
         protected void Application_Start()
         {
@@ -20,7 +19,7 @@ namespace CarEncylopedia.Main
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            mapper = ServicesMapperConfiguration.Configure();
+            ContainerConfig.RegisterContainer();
         }
     }
 }

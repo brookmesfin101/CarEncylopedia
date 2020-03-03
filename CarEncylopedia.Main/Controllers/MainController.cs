@@ -1,4 +1,5 @@
-﻿using CarEncylopedia.Service;
+﻿using AutoMapper;
+using CarEncylopedia.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace CarEncylopedia.Main.Controllers
         HomeService homeService;
 
         public MainController()
-        {
+        {            
             homeService = new HomeService();
         }
 
