@@ -1,0 +1,13 @@
+﻿@model CarEncylopedia.Main.ViewModels.IndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var car in Model.Cars)
+{
+    <li>@car.Make</li>
+    <li>@car.Model</li>
+    <li>@car.Package</li>
+}
