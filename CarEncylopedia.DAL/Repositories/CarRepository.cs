@@ -88,7 +88,7 @@ namespace CarEncylopedia.DAL.Repositories
                     CityMPG = cityMPG,
                     HwyMPG = hwyMPG,
                     Class = classes[i],
-                    Weight = int.Parse(weights[i]),
+                    Weight = int.TryParse(weights[i], out int weight) ? int.Parse(weights[i]) : 0,
                     Horsepower = hpowers[i]
                 });
             }
@@ -111,8 +111,17 @@ namespace CarEncylopedia.DAL.Repositories
         {
             Regex modelRegex = new Regex("\\s(Specs)(:\\s)");
 
-            actual_model = modelRegex.Split(model)[0];
-            package = modelRegex.Split(model)[3];
+            var splitResults = modelRegex.Split(model);
+            actual_model = splitResults[0];
+            
+            if(splitResults.Length > 3)
+            {
+                package = splitResults[3] ?? "";
+            } 
+            else
+            {
+                package = string.Empty;
+            }            
         }
 
         private void SplitMPG(string mpg, out int cityMPG, out int hwyMPG)
@@ -120,8 +129,16 @@ namespace CarEncylopedia.DAL.Repositories
             Regex cityMPGRegex = new Regex("\\d{2}(?=\\smpg City)");
             Regex hwyMPGRegex = new Regex("\\d{2}(?=\\smpg Hwy)");
 
-            cityMPG = int.Parse(cityMPGRegex.Match(mpg).Value);
-            hwyMPG = int.Parse(hwyMPGRegex.Match(mpg).Value);
+            if (string.IsNullOrEmpty(mpg))
+            {
+                cityMPG = 0;
+                hwyMPG = 0;
+            } 
+            else
+            {
+                cityMPG = int.Parse(cityMPGRegex.Match(mpg).Value);
+                hwyMPG = int.Parse(hwyMPGRegex.Match(mpg).Value);
+            }            
         }
 
         private int ParseMSRP(string msrp)
@@ -129,6 +146,7 @@ namespace CarEncylopedia.DAL.Repositories
             msrp = msrp.Replace("\"", "");
             msrp = msrp.Replace(",", "");
             msrp = msrp.Replace("$", "");
+            msrp = msrp.Replace("N/A", "");
 
             var MSRP = int.Parse(msrp);
 
