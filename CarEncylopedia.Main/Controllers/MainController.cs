@@ -40,7 +40,7 @@ namespace CarEncylopedia.Main.Controllers
                                .Select(d => d.First().Make)
                                .ToList();
 
-            return View(makes);
+            return PartialView(makes);
         }
     }
 }

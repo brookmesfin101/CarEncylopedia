@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarEncylopedia.Main", "CarEncylopedia.Main\CarEncylopedia.Main.csproj", "{D41A494F-5984-4C05-AACC-A04B0AA77EA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarEncylopedia.Service", "CarEncylopedia.Service\CarEncylopedia.Service.csproj", "{B1F10D70-AD6A-4317-9568-C9F003B7E3EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarEncylopedia.Service", "CarEncylopedia.Service\CarEncylopedia.Service.csproj", "{B1F10D70-AD6A-4317-9568-C9F003B7E3EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarEncylopedia.DAL", "CarEncylopedia.DAL\CarEncylopedia.DAL.csproj", "{AB388382-2281-4EC0-96A9-D3A7885FF4AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarEncylopedia.DAL", "CarEncylopedia.DAL\CarEncylopedia.DAL.csproj", "{AB388382-2281-4EC0-96A9-D3A7885FF4AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarEncylopedia.Data", "CarEncylopedia.Data\CarEncylopedia.Data.csproj", "{6FA4B6ED-7981-4338-9C56-846D8260AE1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarEncylopedia.Data", "CarEncylopedia.Data\CarEncylopedia.Data.csproj", "{6FA4B6ED-7981-4338-9C56-846D8260AE1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
