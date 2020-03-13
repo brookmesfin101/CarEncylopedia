@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CarEncylopedia.Main.ViewModels
 {
-    public class IndexViewModel
+    public class DisplayCarsViewModel
     {
         public List<CarDTO> Cars { get; set; }
     }

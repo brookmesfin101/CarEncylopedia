@@ -1,3 +1,3 @@
 ﻿@model List<string>
 
-@Html.DropDownList("CarMakes", new SelectList(Model))
+@Html.DropDownList("CarMakes", new SelectList(Model), new { @class = "form-control-sm", id = "CarMakesSelect" })

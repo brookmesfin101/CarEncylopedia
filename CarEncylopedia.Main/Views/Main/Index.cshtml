@@ -1,47 +1,11 @@
-﻿@model CarEncylopedia.Main.ViewModels.IndexViewModel
+﻿
 @{
     ViewBag.Title = "Index";
 }
 
-<div class="row no-gutters">
-    @foreach (var car in Model.Cars)
-    {
-        <div class="col-3 card text-white bg-primary mb-3">
-            <div class="card-header">@car.Model</div>
-            <div class="card-body">
-                <p class="card-text">
-                    <span class="font-weight-bold">Price : </span>
-                    <span class="text-info">@car.Price</span>                    
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Class : </span>
-                    <span class="text-info">@car.Class</span>                
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Horsepower : </span>
-                    <span class="text-info">@car.Horsepower</span>                
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Package : </span>
-                    <span class="text-info">@car.Package</span>                
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Year : </span>
-                    <span class="text-info">@car.Year</span>                
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">City MPG : </span>
-                    <span class="text-info">@car.CityMPG</span>                
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Hwy MPG : </span>
-                    <span class="text-info">@car.HwyMPG</span>
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Weight : </span>
-                    <span class="text-info">@car.Weight lbs</span>                
-                </p>
-            </div>
-        </div>
-    }
-</div>
+    <div class="jumbotron">
+        <h1 class="display-3">Search over 30,000 cars</h1>
+        <p class="lead">Containing information ranging from highway mpg to horsepower</p>
+        <hr class="my-4">
+        <p>Use the control bar on the left to navigate through the information.</p>        
+    </div>

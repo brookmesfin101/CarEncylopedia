@@ -21,15 +21,20 @@ namespace CarEncylopedia.Main.Controllers
 
         // GET: Main
         public ActionResult Index()
+        {            
+            return View();            
+        }
+
+        public ActionResult DisplayCars()
         {
             var carData = _homeService.GetCars();
 
-            var vm = new IndexViewModel();
+            var vm = new DisplayCarsViewModel();
             vm.Cars = carData.GroupBy(c => new { c.Make, c.Model })
                                .Select(d => d.First())
                                .ToList();
 
-            return View(vm);            
+            return PartialView(vm);
         }
 
         public ActionResult CarMakesDropDownList()
@@ -41,6 +46,22 @@ namespace CarEncylopedia.Main.Controllers
                                .ToList();
 
             return PartialView(makes);
+        }
+
+        [HttpPost]
+        public ActionResult DisplayByMake(FormCollection form)
+        {
+            var carData = _homeService.GetCars();
+            
+            var cars = carData.GroupBy(c => new { c.Make, c.Model })
+                                .Select(d => d.First())                                
+                                .ToList();
+
+            var vm = new DisplayCarsViewModel();
+            var sortedByMake = cars.Where(c => c.Make == form["CarMakes"]).ToList();
+            vm.Cars = sortedByMake;
+
+            return View("DisplayCars", vm);
         }
     }
 }
