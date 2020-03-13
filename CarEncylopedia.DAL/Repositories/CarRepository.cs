@@ -100,7 +100,7 @@ namespace CarEncylopedia.DAL.Repositories
         {
             Regex yearRegex = new Regex("\\d{4}");
             Regex makeRegex = new Regex("(?<=\\d{4}\\s)\\w*");
-            Regex modelRegex = new Regex("(?<=\\d{4}\\s\\w*\\s)[:/A-Za-z\\s]*");
+            Regex modelRegex = new Regex("(?<=\\d{4}\\s\\w*\\s)[:/A-Za-z\\s0-9-.]*");
 
             year = int.Parse(yearRegex.Match(name).Value);
             make = makeRegex.Match(name).Value;

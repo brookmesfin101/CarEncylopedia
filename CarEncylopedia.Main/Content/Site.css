@@ -16,3 +16,12 @@ textarea {
     max-width: 280px;
 }
 
+.vertical-nav {
+    float: left;
+    width: 200px;
+    text-align: center;
+    background-color: rgb(62, 63, 58);
+    color: white;
+    margin-right: 5px;
+}
+

@@ -19,7 +19,7 @@ namespace CarEncylopedia.Main
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterControllers(typeof(MvcApplication).Assembly).InstancePerRequest();
+            builder.RegisterControllers(typeof(MvcApplication).Assembly).InstancePerDependency();
 
             builder.RegisterType<HomeService>()
                    .As<IHomeService>();

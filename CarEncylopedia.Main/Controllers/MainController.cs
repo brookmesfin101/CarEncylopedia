@@ -13,12 +13,10 @@ namespace CarEncylopedia.Main.Controllers
     public class MainController : Controller
     {
         IHomeService _homeService;
-        IMapper _mapper;
 
-        public MainController(IHomeService homeService, IMapper mapper)
+        public MainController(IHomeService homeService)
         {
             _homeService = homeService;
-            _mapper = mapper;
         }
 
         // GET: Main
@@ -27,9 +25,22 @@ namespace CarEncylopedia.Main.Controllers
             var carData = _homeService.GetCars();
 
             var vm = new IndexViewModel();
-            vm.Cars = carData;
+            vm.Cars = carData.GroupBy(c => new { c.Make, c.Model })
+                               .Select(d => d.First())
+                               .ToList();
 
             return View(vm);            
+        }
+
+        public ActionResult CarMakesDropDownList()
+        {
+            var carData = _homeService.GetCars();
+
+            var makes = carData.GroupBy(c => new { c.Make })
+                               .Select(d => d.First().Make)
+                               .ToList();
+
+            return View(makes);
         }
     }
 }

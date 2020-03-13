@@ -7,25 +7,22 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
+<body>    
+    <div class="vertical-nav">
+        <h2>Car Encyclopedia</h2>
+        <ul class="list-group">
+            @*<li></li>
+            <li>Make DropDown List</li>
+            <li></li>*@
+            <li>
+                <p class="font-weight-bold mb-0">Display Cars By Make</p>
+                <p class="mb-1">TODO: DropDown List</p>
+                @{Html.RenderAction("CarMakesDropDownList", "Main");}
+                <button class="btn-info btn-sm">Display</button>
+            </li>
+        </ul>
     </div>
-
-    <div class="container body-content">
+    <div style="width: 80%">
         @RenderBody()
         <hr />
         <footer>
