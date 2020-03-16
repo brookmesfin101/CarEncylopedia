@@ -18,13 +18,22 @@
                         @Html.Action("CarMakesDropDownList", "Main")
                         <button type="button" id="CarMakes" class="btn-info btn-sm">Display</button>
                     </li>
+                    <li class="mt-2">
+                        <p class="font-weight-bold mb-0">Display Cars By Price</p>
+                        @Html.Action("CarPricesDropDownList", "Main")
+                        <button type="button" id="CarPrices" class="btn-info btn-sm">Display</button>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="col-lg-7">
-            <div>
+            <div id="main-body">
                 @RenderBody()
             </div>
+            <div id="busy" class="d-none">
+                <img src="~/Public/busy.gif" />
+            </div>
+            
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")

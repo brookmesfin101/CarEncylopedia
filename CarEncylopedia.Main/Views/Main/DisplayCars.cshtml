@@ -7,11 +7,11 @@
     @foreach (var car in Model.Cars)
     {
         <div class="col-3 card text-white bg-primary mb-3">
-            <div class="card-header">@car.Model</div>
+            <div class="card-header">@car.Make  @car.Model</div>
             <div class="card-body">
                 <p class="card-text">
                     <span class="font-weight-bold">Price : </span>
-                    <span class="text-info">@car.Price</span>
+                    <span class="text-info">@car.Price.ToString("C")</span>
                 </p>
                 <p class="card-text">
                     <span class="font-weight-bold">Class : </span>
@@ -29,18 +29,27 @@
                     <span class="font-weight-bold">Year : </span>
                     <span class="text-info">@car.Year</span>
                 </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">City MPG : </span>
-                    <span class="text-info">@car.CityMPG</span>
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Hwy MPG : </span>
-                    <span class="text-info">@car.HwyMPG</span>
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Weight : </span>
-                    <span class="text-info">@car.Weight lbs</span>
-                </p>
+                @if (car.CityMPG > 0)
+                {
+                    <p class="card-text">
+                        <span class="font-weight-bold">City MPG : </span>
+                        <span class="text-info">@car.CityMPG</span>
+                    </p>
+                }
+                @if (car.HwyMPG > 0)
+                {
+                    <p class="card-text">
+                        <span class="font-weight-bold">Hwy MPG : </span>
+                        <span class="text-info">@car.HwyMPG</span>
+                    </p>
+                }
+                @if (car.Weight > 0)
+                {
+                    <p class="card-text">
+                        <span class="font-weight-bold">Weight : </span>
+                        <span class="text-info">@car.Weight lbs</span>
+                    </p>
+                }
             </div>
         </div>
     }

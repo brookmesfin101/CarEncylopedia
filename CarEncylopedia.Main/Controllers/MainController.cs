@@ -2,6 +2,7 @@
 using CarEncylopedia.Main.ViewModels;
 using CarEncylopedia.Service;
 using CarEncylopedia.Service.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,9 +49,29 @@ namespace CarEncylopedia.Main.Controllers
             return PartialView(makes);
         }
 
-        [HttpPost]
-        public ActionResult DisplayByMake(FormCollection form)
+        public ActionResult CarPricesDropDownList()
         {
+            var prices = new List<string>()
+            {
+                "10,000 - 20,000",
+                "20,000 - 30,000",
+                "30,000 - 40,000",
+                "40,000 - 50,000",
+                "50,000 - 60,000",
+                "60,000 - 90,000",
+                "100,000 - 200,000",
+                "200,000 - 500,000",
+                "500,000+"
+            };
+
+            return PartialView(prices);
+        }
+
+        [HttpPost]
+        public ActionResult DisplayByMake(string carMake)
+        {
+            var _carMake = JsonConvert.DeserializeObject<string>(carMake);
+
             var carData = _homeService.GetCars();
             
             var cars = carData.GroupBy(c => new { c.Make, c.Model })
@@ -58,10 +79,10 @@ namespace CarEncylopedia.Main.Controllers
                                 .ToList();
 
             var vm = new DisplayCarsViewModel();
-            var sortedByMake = cars.Where(c => c.Make == form["CarMakes"]).ToList();
+            var sortedByMake = cars.Where(c => c.Make == _carMake).ToList();
             vm.Cars = sortedByMake;
 
-            return View("DisplayCars", vm);
+            return PartialView("DisplayCars", vm);
         }
     }
 }

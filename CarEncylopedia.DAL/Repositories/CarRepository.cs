@@ -44,7 +44,7 @@ namespace CarEncylopedia.DAL.Repositories
                     cols = c.Split(',');
                 }
                 
-                processed.Add(cols.Take(1000).ToList());
+                processed.Add(cols.Take(30000).ToList());
             }
 
             var cars = CreateCars(processed);
@@ -126,8 +126,8 @@ namespace CarEncylopedia.DAL.Repositories
 
         private void SplitMPG(string mpg, out int cityMPG, out int hwyMPG)
         {
-            Regex cityMPGRegex = new Regex("\\d{2}(?=\\smpg City)");
-            Regex hwyMPGRegex = new Regex("\\d{2}(?=\\smpg Hwy)");
+            Regex cityMPGRegex = new Regex("\\d*(?=\\smpg City)");
+            Regex hwyMPGRegex = new Regex("\\d*(?=\\smpg Hwy)");
 
             if (string.IsNullOrEmpty(mpg))
             {
