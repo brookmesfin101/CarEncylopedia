@@ -101,8 +101,8 @@ namespace CarEncylopedia.DAL.Repositories
             Regex yearRegex = new Regex("\\d{4}");
             Regex makeRegex = new Regex("(?<=\\d{4}\\s)\\w*");
             Regex modelRegex = new Regex("(?<=\\d{4}\\s\\w*\\s)[:/A-Za-z\\s0-9-.]*");
-
-            year = int.Parse(yearRegex.Match(name).Value);
+            
+            year = string.IsNullOrEmpty(yearRegex.Match(name).Value) ? 0 : int.Parse(yearRegex.Match(name).Value);
             make = makeRegex.Match(name).Value;
             model = modelRegex.Match(name).Value;
         }
@@ -134,7 +134,17 @@ namespace CarEncylopedia.DAL.Repositories
                 cityMPG = 0;
                 hwyMPG = 0;
             } 
-            else
+            else if(mpg.Contains("City") && !mpg.Contains("Hwy"))
+            {
+                cityMPG = int.Parse(cityMPGRegex.Match(mpg).Value);
+                hwyMPG = 0;
+            }
+            else if(!mpg.Contains("City") && mpg.Contains("Hwy"))
+            {
+                cityMPG = 0;
+                hwyMPG = int.Parse(hwyMPGRegex.Match(mpg).Value);
+            }
+            else            
             {
                 cityMPG = int.Parse(cityMPGRegex.Match(mpg).Value);
                 hwyMPG = int.Parse(hwyMPGRegex.Match(mpg).Value);
