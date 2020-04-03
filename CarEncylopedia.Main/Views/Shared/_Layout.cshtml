@@ -12,16 +12,56 @@
         <div class="col-lg-2">
             <div class="vertical-nav">
                 <h2 class="pt-2">Car Encyclopedia</h2>
-                <ul class="list-group border-top pt-2">
+                <ul class="list-group border-top pt-2 ml-2 text-left">
                     <li>
                         <p class="font-weight-bold mb-0">Display Cars By Make</p>
                         @Html.Action("CarMakesDropDownList", "Main")
                         <button type="button" id="CarMakes" class="btn-info btn-sm">Display</button>
+                        <ul id="carMakesSortOptions" class="list-group d-none">
+                            <li class="mt-1 d-none car-makes-sort">
+                                <p class="mb-0 mr-1 sub-link d-inline">Sort Cars By: </p>
+                                <select class="form-control-xs car-makes-sort-by">
+                                    <option value="Model">Model</option>
+                                    <option value="Price">Price</option>
+                                    <option value="CityMPG">City MPG</option>
+                                    <option value="HwyMPG">Hwy MPG</option>
+                                    <option value="Weight">Weight</option>
+                                </select>
+                                <select class="form-control-xs car-makes-sort-order-alpha">
+                                    <option class="alpha" value="ASC">A to Z</option>
+                                    <option class="alpha" value="DESC">Z to A</option>                                    
+                                </select>
+                                <select class="form-control-xs car-makes-sort-order-numeric d-none">
+                                    <option class="numeric" value="ASC">Low to High</option>
+                                    <option class="numeric" value="DESC">High to Low</option>
+                                </select>
+                            </li>                            
+                        </ul>
                     </li>
                     <li class="mt-2">
                         <p class="font-weight-bold mb-0">Display Cars By Price</p>
                         @Html.Action("CarPricesDropDownList", "Main")
                         <button type="button" id="CarPrices" class="btn-info btn-sm">Display</button>
+                        <ul id="carPriceSortOptions" class="list-group d-none">
+                            <li class="mt-1 car-prices-sort">
+                                <p class="mb-0 mr-1 sub-link d-inline">Sort Cars By: </p>
+                                <select class="form-control-xs car-prices-sort-by">
+                                    <option value="Model">Model</option>
+                                    <option value="Price">Price</option>
+                                    <option value="CityMPG">City MPG</option>
+                                    <option value="HwyMPG">Hwy MPG</option>
+                                    <option value="Weight">Weight</option>
+                                </select>
+                                <select class="form-control-xs car-prices-sort-order-alpha">
+                                    <option value="ASC">A to Z</option>
+                                    <option value="DESC">Z to A</option>
+                                </select>
+                                <select class="form-control-xs car-prices-sort-order-numeric d-none">
+                                    <option value="ASC">Low to High</option>
+                                    <option value="DESC">High to Low</option>
+                                </select>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>

@@ -32,3 +32,17 @@ textarea {
     transform: translate(-50%, -50%);
 }
 
+.sub-link {
+    font-size: 11px;
+    text-decoration: underline;
+    padding-left: 10px;
+}
+
+.form-control-xs {
+    height: calc(1.0em + 0.4rem + 1.25px);
+    padding: 0.08rem 0rem;
+    font-size: 0.765625rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+

@@ -13,23 +13,32 @@
                     <span class="font-weight-bold">Price : </span>
                     <span class="text-info">@car.Price.ToString("C")</span>
                 </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Class : </span>
-                    <span class="text-info">@car.Class</span>
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Horsepower : </span>
-                    <span class="text-info">@car.Horsepower</span>
-                </p>
-                <p class="card-text">
-                    <span class="font-weight-bold">Package : </span>
-                    <span class="text-info">@car.Package</span>
-                </p>
+                @if (!string.IsNullOrEmpty(car.Class))
+                {
+                    <p class="card-text">
+                        <span class="font-weight-bold">Class : </span>
+                        <span class="text-info">@car.Class</span>
+                    </p>
+                }
+                @if (!string.IsNullOrEmpty(car.Horsepower))
+                {
+                    <p class="card-text">
+                        <span class="font-weight-bold">Horsepower : </span>
+                        <span class="text-info">@car.Horsepower</span>
+                    </p>
+                }
+                @if (!string.IsNullOrEmpty(car.Package))
+                {
+                    <p class="card-text">
+                        <span class="font-weight-bold">Package : </span>
+                        <span class="text-info">@car.Package</span>
+                    </p>
+                }
                 <p class="card-text">
                     <span class="font-weight-bold">Year : </span>
                     <span class="text-info">@car.Year</span>
                 </p>
-                @ if (car.CityMPG > 0)
+                @if (car.CityMPG > 0)
                 {
                     <p class="card-text">
                         <span class="font-weight-bold">City MPG : </span>

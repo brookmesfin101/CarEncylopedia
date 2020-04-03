@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿
+using Autofac;
 using Autofac.Integration.Mvc;
 using AutoMapper;
 using CarEncylopedia.Main.Infrastructure.AutoFac_Modules;

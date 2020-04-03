@@ -1,11 +1,16 @@
 ﻿using AutoMapper;
 using CarEncylopedia.Main.ViewModels;
 using CarEncylopedia.Service;
+using CarEncylopedia.Service.DTOModels;
+using CarEncylopedia.Service.Infrastructure.HelperClasses;
 using CarEncylopedia.Service.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -67,10 +72,14 @@ namespace CarEncylopedia.Main.Controllers
             return PartialView(prices);
         }
 
+        
+
         [HttpPost]
-        public ActionResult DisplayByMake(string carMake)
+        public ActionResult DisplayByMake(string carMake, string sortBy, string sortOrder)
         {
             var _carMake = JsonConvert.DeserializeObject<string>(carMake);
+            var _sortBy = JsonConvert.DeserializeObject<string>(sortBy);
+            var _sortOrder = JsonConvert.DeserializeObject<string>(sortOrder);
 
             var carData = _homeService.GetCars();
             
@@ -79,8 +88,61 @@ namespace CarEncylopedia.Main.Controllers
                                 .ToList();
 
             var vm = new DisplayCarsViewModel();
-            var sortedByMake = cars.Where(c => c.Make == _carMake).ToList();
-            vm.Cars = sortedByMake;
+            var filteredByMake = cars.Where(c => c.Make == _carMake).ToList();
+
+            List<CarDTO> sortedByModel = new List<CarDTO>();      
+            
+            if(_sortOrder == "ASC")
+            {
+                sortedByModel = filteredByMake.AsQueryable().SortBy(_sortBy, false).ToList();                
+            }
+            else
+            {
+                sortedByModel = filteredByMake.AsQueryable().SortBy(_sortBy, true).ToList();
+            }                        
+
+            vm.Cars = sortedByModel;
+
+            return PartialView("DisplayCars", vm);
+        }        
+
+        [HttpPost]
+        public ActionResult DisplayByPrice(string carPrice, string sortBy, string sortOrder)
+        {
+            var _carPrice = JsonConvert.DeserializeObject<string>(carPrice);
+            var _sortBy = JsonConvert.DeserializeObject<string>(sortBy);
+            var _sortOrder = JsonConvert.DeserializeObject<string>(sortOrder);
+            var carData = _homeService.GetCars();
+
+            var rgx = new Regex("(\\d*,\\d*)");
+            var matches = rgx.Matches(_carPrice);
+            List<CarDTO> sortedByPrice;
+
+            if(matches.Count > 1)
+            {
+                var min = int.Parse(matches[0].Value.Replace(",", ""));
+                var max = int.Parse(matches[1].Value.Replace(",", ""));
+
+                sortedByPrice = carData.Where(c => c.Price >= min && c.Price <= max).ToList();
+            } 
+            else
+            {
+                var min = int.Parse(matches[0].Value.Replace(",", ""));
+
+                sortedByPrice = carData.Where(c => c.Price >= min).ToList();
+            }
+
+            if (_sortOrder == "ASC")
+            {
+                sortedByPrice = sortedByPrice.AsQueryable().SortBy(_sortBy, false).ToList();
+            }
+            else
+            {
+                sortedByPrice = sortedByPrice.AsQueryable().SortBy(_sortBy, true).ToList();
+            }
+
+            var vm = new DisplayCarsViewModel();
+            vm.Cars = sortedByPrice;
 
             return PartialView("DisplayCars", vm);
         }

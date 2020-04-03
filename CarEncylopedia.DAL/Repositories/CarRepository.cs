@@ -44,10 +44,11 @@ namespace CarEncylopedia.DAL.Repositories
                     cols = c.Split(',');
                 }
                 
-                processed.Add(cols.Take(30000).ToList());
+                processed.Add(cols.Take(32327).ToList());
             }
 
             var cars = CreateCars(processed);
+            cars = cars.Where(c => c.Make != string.Empty).ToList();
 
             return cars;
         }
@@ -74,22 +75,25 @@ namespace CarEncylopedia.DAL.Repositories
                 string package;
                 SplitModel(model, out actual_model, out package);
 
-                int cityMPG;
-                int hwyMPG;
-                SplitMPG(mpgs[i], out cityMPG, out hwyMPG);
+                int cityMPG = 0;
+                int hwyMPG = 0;
+                if(i < mpgs.Count)
+                {
+                    SplitMPG(mpgs[i], out cityMPG, out hwyMPG);
+                }                
 
                 cars.Add(new Car()
                 {
                     Make = make,
                     Model = actual_model,
                     Package = package,
-                    Year = year,                                       
-                    Price = ParseMSRP(msrp[i]),
+                    Year = year,
+                    Price = i < msrp.Count ? ParseMSRP(msrp[i]) : 0,
                     CityMPG = cityMPG,
-                    HwyMPG = hwyMPG,
-                    Class = classes[i],
+                    HwyMPG = hwyMPG,                    
+                    Class = i < classes.Count ? classes[i] : string.Empty,
                     Weight = int.TryParse(weights[i], out int weight) ? int.Parse(weights[i]) : 0,
-                    Horsepower = hpowers[i]
+                    Horsepower = i < hpowers.Count ? hpowers[i] : string.Empty
                 });
             }
 
