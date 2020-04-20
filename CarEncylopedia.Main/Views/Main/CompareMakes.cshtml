@@ -4,37 +4,32 @@
 
 <script type="text/javascript">
     var ctx = document.getElementById('myChart').getContext('2d');
-    var cars = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Cars))
+    var cars = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.MakeAverages))
     
-    var arr = [];
+    var makes = [];
+    var avgs = [];
+    var colors = [];
+
+    
     cars.forEach(el => {
-        debugger;
-        if(arr.indexOf()
+        makes.push(el.Item1);
+        avgs.push(el.Item2);
+        colors.push(random_rgba());
     })
+
+    function random_rgba() {
+        return 'rgba(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.random().toFixed(1) + ')';
+    }
 
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: makes,
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                label: 'Average Price of Car',
+                data: avgs,
+                backgroundColor: colors,
+                borderColor: 'rgba(0,0,0,.5)',
                 borderWidth: 1
             }]
         },
