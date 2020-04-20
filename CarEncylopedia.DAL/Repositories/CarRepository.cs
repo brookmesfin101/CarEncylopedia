@@ -103,8 +103,8 @@ namespace CarEncylopedia.DAL.Repositories
         private void SplitName(string name, out int year, out string make, out string model)
         {
             Regex yearRegex = new Regex("\\d{4}");
-            Regex makeRegex = new Regex("(?<=\\d{4}\\s)\\w*");
-            Regex modelRegex = new Regex("(?<=\\d{4}\\s\\w*\\s)[:/A-Za-z\\s0-9-.]*");
+            Regex makeRegex = new Regex("(?<=\\d{4}\\s)\\w*-*\\w*");
+            Regex modelRegex = new Regex("(?<=\\d{4}\\s\\w*-*\\w*\\s)[:/A-Za-z\\s0-9-.]*");
             
             year = string.IsNullOrEmpty(yearRegex.Match(name).Value) ? 0 : int.Parse(yearRegex.Match(name).Value);
             make = makeRegex.Match(name).Value;

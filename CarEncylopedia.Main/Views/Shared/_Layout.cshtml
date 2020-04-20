@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://unpkg.com/jam-icons/css/jam.min.css">
 </head>
 <body>  
     <div class="row">
@@ -13,6 +14,9 @@
             <div class="vertical-nav">
                 <h2 class="pt-2">Car Encyclopedia</h2>
                 <ul class="list-group border-top pt-2 ml-2 text-left">
+                    <li class="text-center">
+                        <p class="d-inline"><span class="jam jam-filter mr-1"></span>Filters</p>
+                    </li>
                     <li>
                         <p class="font-weight-bold mb-0">Display Cars By Make</p>
                         @Html.Action("CarMakesDropDownList", "Main")
@@ -62,6 +66,31 @@
                                 </select>
                             </li>
                         </ul>
+                    </li>
+                </ul>
+                <ul class="list-group border-top-0 pt-2 ml-2 text-left">
+                    <li class="text-center">
+                        <p class="d-inline"><span class="jam jam-pie-chart mr-1"></span>Visualize</p>                        
+                    </li>
+                    <li>
+                        <p id="CompareMakesToggle" class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span><u>Compare Makes</u></p>
+                        <ul id="CompareMakesOptions" class="list-group d-none">
+                            <li class="list-unstyled ml-3">
+                                <p class="d-inline">Compare : </p>
+                                <select id="CompareMakesOn" class="form-control-sm">
+                                    <option>Price</option>
+                                    <option>City MPG</option>
+                                    <option>Hwy MPG</option>
+                                </select>
+                                <button type="button" id="CompareMakes" class="btn-info btn-sm">Display</button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span>Compare Model Packages</p>
+                    </li>
+                    <li>
+                        <p class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span>Compare Model by Year</p>
                     </li>
                 </ul>
             </div>

@@ -46,3 +46,12 @@ textarea {
     border-radius: 0.2rem;
 }
 
+/* Nav Visualize Section */
+
+#CompareMakesToggle {
+    cursor: pointer;
+}
+    #CompareMakesToggle:hover {
+        color: #29ABE0;
+    }
+

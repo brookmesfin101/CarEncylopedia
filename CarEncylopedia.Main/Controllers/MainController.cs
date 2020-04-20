@@ -146,5 +146,22 @@ namespace CarEncylopedia.Main.Controllers
 
             return PartialView("DisplayCars", vm);
         }
+
+        [HttpPost]
+        public ActionResult CompareMakes(string compare)
+        {
+            var _compare = JsonConvert.DeserializeObject<string>(compare);
+
+            var carData = _homeService.GetCars();
+            var makes = carData.Select(c => c.Make).Distinct().ToList();
+            List<Tuple<string, double>> makeAverages = new List<Tuple<string, double>>();
+            makeAverages = carData.GroupBy(c => c.Make)
+                                .Select(i => new Tuple<string, double> ( i.Key, Math.Round(i.Average(x => x.Price), 2) )).ToList();
+
+            var vm = new CompareMakesViewModel();
+            vm.MakeAverages = makeAverages;
+
+            return PartialView("CompareMakes", vm);
+        }
     }
 }

@@ -217,3 +217,29 @@ $(".car-prices-sort-order-numeric").on("change", function () {
         $("#main-body").html(response);
     });
 });
+
+// Visualize Section
+// Car Compare By Make
+
+$("#CompareMakesToggle").on("click", function () {
+    $("#CompareMakesOptions").toggleClass("d-none");
+});
+
+$("#CompareMakes").on("click", function () {
+    var compare = $("#CompareMakesOn").children("option:selected").val();
+
+    $.ajax({
+        beforeSend: function () {
+            $("#busy").removeClass("d-none");
+        },
+        complete: function () {
+            $("#busy").addClass("d-none");
+        },
+        url: "Main/CompareMakes",
+        type: "POST",
+        data: { compare: JSON.stringify(compare) },
+        dataType: "html"
+    }).done(function (response) {
+        $("#main-body").html(response);
+    });
+});
