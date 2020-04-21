@@ -5,11 +5,14 @@
 <script type="text/javascript">
     var ctx = document.getElementById('myChart').getContext('2d');
     var cars = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.MakeAverages))
+    var compareOn = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CompareOn))
     
     var makes = [];
     var avgs = [];
     var colors = [];
+    var label = `Average ${compareOn} of Car`;
 
+    debugger;
     
     cars.forEach(el => {
         makes.push(el.Item1);
@@ -26,7 +29,7 @@
         data: {
             labels: makes,
             datasets: [{
-                label: 'Average Price of Car',
+                label: label,
                 data: avgs,
                 backgroundColor: colors,
                 borderColor: 'rgba(0,0,0,.5)',

@@ -154,11 +154,29 @@ namespace CarEncylopedia.Main.Controllers
 
             var carData = _homeService.GetCars();
             var makes = carData.Select(c => c.Make).Distinct().ToList();
-            List<Tuple<string, double>> makeAverages = new List<Tuple<string, double>>();
-            makeAverages = carData.GroupBy(c => c.Make)
-                                .Select(i => new Tuple<string, double> ( i.Key, Math.Round(i.Average(x => x.Price), 2) )).ToList();
 
             var vm = new CompareMakesViewModel();
+            List<Tuple<string, double>> makeAverages = new List<Tuple<string, double>>();
+
+            if(_compare == "Price")
+            {
+                makeAverages = carData.GroupBy(c => c.Make)
+                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.Price), 2))).ToList();
+                vm.CompareOn = CompareCar.Price;
+            } 
+            else if(_compare == "City MPG")
+            {
+                makeAverages = carData.GroupBy(c => c.Make)
+                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.CityMPG), 2))).ToList();
+                vm.CompareOn = CompareCar.CityMPG;
+            }
+            else if(_compare == "Hwy MPG")
+            {
+                makeAverages = carData.GroupBy(c => c.Make)
+                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.HwyMPG), 2))).ToList();
+                vm.CompareOn = CompareCar.HwyMPG;
+            }                
+            
             vm.MakeAverages = makeAverages;
 
             return PartialView("CompareMakes", vm);
