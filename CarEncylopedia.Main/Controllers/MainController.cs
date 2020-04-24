@@ -161,23 +161,21 @@ namespace CarEncylopedia.Main.Controllers
             if(_compare == "Price")
             {
                 makeAverages = carData.GroupBy(c => c.Make)
-                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.Price), 2))).ToList();
-                vm.CompareOn = CompareCar.Price;
+                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.Price), 2))).ToList();                
             } 
             else if(_compare == "City MPG")
             {
                 makeAverages = carData.GroupBy(c => c.Make)
-                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.CityMPG), 2))).ToList();
-                vm.CompareOn = CompareCar.CityMPG;
+                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.CityMPG), 2))).ToList();                
             }
             else if(_compare == "Hwy MPG")
             {
                 makeAverages = carData.GroupBy(c => c.Make)
-                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.HwyMPG), 2))).ToList();
-                vm.CompareOn = CompareCar.HwyMPG;
+                                    .Select(i => new Tuple<string, double>(i.Key, Math.Round(i.Average(x => x.HwyMPG), 2))).ToList();                
             }                
             
             vm.MakeAverages = makeAverages;
+            vm.CompareOn = _compare;
 
             return PartialView("CompareMakes", vm);
         }

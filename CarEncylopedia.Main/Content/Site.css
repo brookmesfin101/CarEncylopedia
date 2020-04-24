@@ -55,3 +55,12 @@ textarea {
         color: #29ABE0;
     }
 
+/* Compare Makes */
+.MakesIncludedToggle {
+    cursor: pointer;
+    border: 1px solid #DFD7CA;
+}
+    .MakesIncludedToggle:hover {
+        color: #29ABE0;
+        border-color: #29ABE0;
+    }
