@@ -21,8 +21,7 @@ namespace CarEncylopedia.Main.ViewModels
                 };
 
                 return chartSort;
-            }
-        
+            }        
         }
     }
 }

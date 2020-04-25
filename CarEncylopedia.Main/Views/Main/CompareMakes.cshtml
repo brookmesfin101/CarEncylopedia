@@ -1,10 +1,10 @@
 ﻿@model CarEncylopedia.Main.ViewModels.CompareMakesViewModel
 
 <div class="row">
-    <div class="col-9">
+    <div class="col-8">
         <canvas id="myChart" width="800" height="600"></canvas>
     </div>
-    <div class="col-2">
+    <div class="col-3">
         <p class="lead"><span class="jam jam-filter mr-2"></span>Chart Filters</p>
         
         <div class="form-group row">
@@ -13,27 +13,31 @@
         </div>  
 
         <p class="MakesIncludedToggle"><span class="jam jam-plus mr-2 pl-1"></span>Makes Included</p>
-        <div id="MakesIncludedList" class="row no-gutters d-none">
-            @for (var i = 0; i < Model.MakeAverages.Count; i++)
-            {
-                if (i % 2 == 0)
+        <div id="MakesIncludedList" class="row no-gutters d-none ml-4">
+            <div class="col-6 mr-0">
+                @for (var i = 0; i < Model.MakeAverages.Count; i++)
                 {
-                    <div class="form-check form-check-inline col-6 mr-0">
-                        <label for="@Model.MakeAverages[i].Item1" class="form-check-label pr-1">@Model.MakeAverages[i].Item1</label>
-                        @Html.CheckBox(Model.MakeAverages[i].Item1, true, new { @class = "form-check-input" })
-                    </div>
+                    if (i % 2 == 0)
+                    {
+                        <div>
+                            @Html.CheckBox(Model.MakeAverages[i].Item1, true, new { @class = "form-check-input" })
+                            <label for="@Model.MakeAverages[i].Item1" class="form-check-label ml-2">@Model.MakeAverages[i].Item1</label>
+                        </div>
+                    }
                 }
-            }
-            @for (var i = 0; i < Model.MakeAverages.Count; i++)
-            {
-                if (i % 2 != 0)
+            </div>
+            <div class="col-6 mr-0">
+                @for (var i = 0; i < Model.MakeAverages.Count; i++)
                 {
-                    <div class="form-check form-check-inline col-6 mr-0">
-                        <label for="@Model.MakeAverages[i].Item1" class="form-check-label pr-1">@Model.MakeAverages[i].Item1</label>
-                        @Html.CheckBox(Model.MakeAverages[i].Item1, true, new { @class = "form-check-input" })
-                    </div>
+                    if (i % 2 != 0)
+                    {
+                        <div>
+                            @Html.CheckBox(Model.MakeAverages[i].Item1, true, new { @class = "form-check-input" })
+                            <label for="@Model.MakeAverages[i].Item1" class="form-check-label ml-2">@Model.MakeAverages[i].Item1</label>                                
+                        </div>
+                    }
                 }
-            }
+            </div>
         </div>        
     </div>
 </div>
@@ -42,21 +46,39 @@
 <script type="text/javascript">
     var ctx = document.getElementById('myChart').getContext('2d');
     var cars = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.MakeAverages))
+    var removedCars = [];
     var compareOn = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CompareOn))
     
     var makes = [];
     var avgs = [];
     var colors = [];
     var label = `Average ${compareOn} of Car`;    
-    
-    cars.forEach(el => {
-        makes.push(el.Item1);
-        avgs.push(el.Item2);
-        colors.push(random_rgba());
-    })
+
+    function createDataAndLabels(cars) {
+
+        if (makes.length && avgs.length && colors.length) {
+            makes = [];
+            avgs = [];
+            colors = [];
+        }
+
+        cars.forEach(el => {
+            makes.push(el.Item1);
+            avgs.push(el.Item2);
+            colors.push(random_rgba());
+        })       
+    }
+
+    createDataAndLabels(cars);    
 
     function random_rgba() {
         return 'rgba(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.random().toFixed(1) + ')';
+    }
+
+    function updateData(chart, labels, data) {
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = data;
+        chart.update();
     }
 
     var myChart = new Chart(ctx, {
@@ -82,11 +104,91 @@
         }
     });
 
-    $(".MakesIncludedToggle").on("click", function () {        
+    $(".MakesIncludedToggle").on("click", function () {
         if ($("#MakesIncludedList").hasClass("d-none") == true) {
             $("#MakesIncludedList").removeClass("d-none");
         } else {
             $("#MakesIncludedList").addClass("d-none");
+        }
+    });
+
+    $("#ChartSortDropDownList").on("change", function () {
+        var val = $(this).val();
+        
+        if (val == "A-Z") {
+            cars = cars.sort((a, b) => {
+                if (a.Item1.toLowerCase() > b.Item1.toLowerCase()) {
+                    return 1;
+                } else if (a.Item1.toLowerCase() < b.Item1.toLowerCase()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            })
+
+            createDataAndLabels(cars);
+            updateData(myChart, makes, avgs);
+        } else if (val == "Z-A") {
+            cars = cars.sort((a, b) => {
+                if (a.Item1.toLowerCase() > b.Item1.toLowerCase()) {
+                    return -1;
+                } else if (a.Item2.toLowerCase() < b.Item1.toLowerCase()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            })
+
+            createDataAndLabels(cars);
+            updateData(myChart, makes, avgs);
+        } else if (val == "Low-High") {
+            cars = cars.sort((a, b) => {
+                if (a.Item2 > b.Item2) {
+                    return 1;
+                } else if (a.Item2 < b.Item2) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            })
+
+            createDataAndLabels(cars);
+            updateData(myChart, makes, avgs);
+        } else {
+            cars = cars.sort((a, b) => {
+                if (a.Item2 > b.Item2) {
+                    return -1;
+                } else if (a.Item2 < b.Item2) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            })
+
+            createDataAndLabels(cars);
+            updateData(myChart, makes, avgs);
+        }
+    });
+
+    $(".form-check-input").on("click", function () {
+        var el = $(this);
+        var make = el.prop("name");        
+        var makeIndex = cars.findIndex(i => i.Item1 === make);
+
+        var carsCopy = cars;
+
+        if (el.prop("checked")) {
+            
+        } else {     
+            var removedCar = cars[makeIndex];
+            removedCars.push(removedCar);   
+            
+            var updatedCars = cars.filter(i => {
+                return removedCars.findIndex(j => j.Item1 === i.Item1) === -1;
+            })
+            
+            createDataAndLabels(updatedCars);
+            updateData(myChart, makes, avgs);
         }
     })
 </script>
