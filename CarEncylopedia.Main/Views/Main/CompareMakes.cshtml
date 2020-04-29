@@ -54,19 +54,24 @@
     var colors = [];
     var label = `Average ${compareOn} of Car`;    
 
-    function createDataAndLabels(cars) {
-
-        if (makes.length && avgs.length && colors.length) {
-            makes = [];
-            avgs = [];
-            colors = [];
-        }
+    function createDataAndLabels(cars) {             
+        makes = [];
+        avgs = [];
+        colors = [];        
 
         cars.forEach(el => {
             makes.push(el.Item1);
             avgs.push(el.Item2);
             colors.push(random_rgba());
         })       
+    }
+
+    function updateMakeList() {
+        var updatedCars = cars.filter(i => {
+            return removedCars.findIndex(j => j.Item1 === i.Item1) === -1;
+        })
+        createDataAndLabels(updatedCars);
+        updateData(myChart, makes, avgs);
     }
 
     createDataAndLabels(cars);    
@@ -126,21 +131,20 @@
                 }
             })
 
-            createDataAndLabels(cars);
-            updateData(myChart, makes, avgs);
+            updateMakeList();
         } else if (val == "Z-A") {
+            debugger;
             cars = cars.sort((a, b) => {
                 if (a.Item1.toLowerCase() > b.Item1.toLowerCase()) {
                     return -1;
-                } else if (a.Item2.toLowerCase() < b.Item1.toLowerCase()) {
+                } else if (a.Item1.toLowerCase() < b.Item1.toLowerCase()) {
                     return 1;
                 } else {
                     return 0;
                 }
             })
 
-            createDataAndLabels(cars);
-            updateData(myChart, makes, avgs);
+            updateMakeList();
         } else if (val == "Low-High") {
             cars = cars.sort((a, b) => {
                 if (a.Item2 > b.Item2) {
@@ -152,8 +156,7 @@
                 }
             })
 
-            createDataAndLabels(cars);
-            updateData(myChart, makes, avgs);
+            updateMakeList();
         } else {
             cars = cars.sort((a, b) => {
                 if (a.Item2 > b.Item2) {
@@ -165,8 +168,7 @@
                 }
             })
 
-            createDataAndLabels(cars);
-            updateData(myChart, makes, avgs);
+            updateMakeList();
         }
     });
 
@@ -178,7 +180,15 @@
         var carsCopy = cars;
 
         if (el.prop("checked")) {
-            
+            var addedCar = cars[makeIndex];
+            var i = removedCars.findIndex(j => j.Item1 === addedCar.Item1);
+            removedCars.splice(i, 1);
+
+            var updatedCars = cars.filter(i => {
+                return removedCars.findIndex(j => j.Item1 === i.Item1) === -1;
+            })
+
+            updateMakeList();
         } else {     
             var removedCar = cars[makeIndex];
             removedCars.push(removedCar);   
@@ -187,8 +197,7 @@
                 return removedCars.findIndex(j => j.Item1 === i.Item1) === -1;
             })
             
-            createDataAndLabels(updatedCars);
-            updateData(myChart, makes, avgs);
+            updateMakeList();
         }
     })
 </script>
