@@ -16,9 +16,15 @@ textarea {
     max-width: 280px;
 }
 
+.site-background {    
+    background-image: url('../Public/trianglify_background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .vertical-nav {
     text-align: center;
-    background-color: rgb(62, 63, 58);
+    background-color: #10131C;
     color: white;
     margin-right: 5px;
     margin-left: 5px;
@@ -58,7 +64,7 @@ textarea {
 /* Compare Makes */
 .MakesIncludedToggle {
     cursor: pointer;
-    border: 1px solid #DFD7CA;
+    border: 1px solid black;
 }
     .MakesIncludedToggle:hover {
         color: #29ABE0;

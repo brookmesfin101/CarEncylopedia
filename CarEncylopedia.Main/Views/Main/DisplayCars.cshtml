@@ -3,12 +3,21 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row no-gutters">
+<style>
+    .display-cars-width {
+        width: 95%;
+    }
+    .bg-darkblue {
+        background-color: #10131C;
+    }
+</style>
+
+<div class="row no-gutters display-cars-width">
     @foreach (var car in Model.Cars)
     {
         <div class="col-3 card text-white bg-primary mb-3">
-            <div class="card-header">@car.Make  @car.Model</div>
-            <div class="card-body">
+            <div class="card-header bg-darkblue">@car.Make  @car.Model</div>
+            <div class="card-body bg-darkblue">
                 <p class="card-text">
                     <span class="font-weight-bold">Price : </span>
                     <span class="text-info">@car.Price.ToString("C")</span>

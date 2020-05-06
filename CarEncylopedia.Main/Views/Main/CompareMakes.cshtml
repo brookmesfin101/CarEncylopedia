@@ -6,11 +6,15 @@
     </div>
     <div class="col-3">
         <p class="lead"><span class="jam jam-filter mr-2"></span>Chart Filters</p>
-        
+
+        <div class="form-group row">
+            <label for="ChartType" class="col-5 col-form-label lead">Sort Type</label>
+            @Html.DropDownList("ChartType", new SelectList(Model.ChartType), new { @class = "form-control-sm col-5", id = "ChartTypeDropDownList" })
+        </div>
         <div class="form-group row">
             <label for="ChartSort" class="col-5 col-form-label lead">Sort Chart</label>
             @Html.DropDownList("ChartSort", new SelectList(Model.ChartSort), new { @class = "form-control-sm col-5", id = "ChartSortDropDownList" })
-        </div>  
+        </div>
 
         <p class="MakesIncludedToggle"><span class="jam jam-plus mr-2 pl-1"></span>Makes Included</p>
         <div id="MakesIncludedList" class="row no-gutters d-none ml-4">
@@ -33,12 +37,16 @@
                     {
                         <div>
                             @Html.CheckBox(Model.MakeAverages[i].Item1, true, new { @class = "form-check-input" })
-                            <label for="@Model.MakeAverages[i].Item1" class="form-check-label ml-2">@Model.MakeAverages[i].Item1</label>                                
+                            <label for="@Model.MakeAverages[i].Item1" class="form-check-label ml-2">@Model.MakeAverages[i].Item1</label>
                         </div>
                     }
                 }
             </div>
-        </div>        
+            <div class="mt-2">
+                <button id="SelectAllMakes" class="btn btn-primary mr-3">Select All</button>
+                <button id="DeSelectAllMakes" class="btn btn-primary">De-select All</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -105,6 +113,12 @@
                         beginAtZero: true
                     }
                 }]
+            },
+            legend: {                
+                labels: {
+                    boxWidth: 0,
+                    fontSize: 20
+                }
             }
         }
     });
@@ -115,6 +129,31 @@
         } else {
             $("#MakesIncludedList").addClass("d-none");
         }
+    });
+
+    $("#DeSelectAllMakes").on("click", function () {
+        var checks = $("#MakesIncludedList").find(".form-check-input");
+        
+        for (var i = 0; i < checks.length; i++) {
+            $(checks[i]).prop("checked", false);
+        } 
+
+        for (var i = 0; i < checks.length; i++) {
+            var removedCar = cars[i];
+            removedCars.push(removedCar); 
+        }
+        updateMakeList();
+    });
+
+    $("#SelectAllMakes").on("click", function () {
+        var checks = $("#MakesIncludedList").find(".form-check-input");
+
+        for (var i = 0; i < checks.length; i++) {
+            $(checks[i]).prop("checked", true);
+        }
+        
+        removedCars = [];
+        updateMakeList();
     });
 
     $("#ChartSortDropDownList").on("change", function () {
@@ -172,30 +211,27 @@
         }
     });
 
+    $("#ChartTypeDropDownList").on("change", function () {
+        var val = $(this).val();
+
+        myChart.type = val;
+        myChart.update();
+    });
+
     $(".form-check-input").on("click", function () {
         var el = $(this);
         var make = el.prop("name");        
         var makeIndex = cars.findIndex(i => i.Item1 === make);
-
-        var carsCopy = cars;
 
         if (el.prop("checked")) {
             var addedCar = cars[makeIndex];
             var i = removedCars.findIndex(j => j.Item1 === addedCar.Item1);
             removedCars.splice(i, 1);
 
-            var updatedCars = cars.filter(i => {
-                return removedCars.findIndex(j => j.Item1 === i.Item1) === -1;
-            })
-
             updateMakeList();
         } else {     
             var removedCar = cars[makeIndex];
-            removedCars.push(removedCar);   
-            
-            var updatedCars = cars.filter(i => {
-                return removedCars.findIndex(j => j.Item1 === i.Item1) === -1;
-            })
+            removedCars.push(removedCar);              
             
             updateMakeList();
         }

@@ -11,7 +11,8 @@ namespace CarEncylopedia.Main.ViewModels
 
         public List<string> ChartSort 
         {
-            get {
+            get 
+            {
                 List<string> chartSort = new List<string>
                 {
                     "A-Z",
@@ -22,6 +23,20 @@ namespace CarEncylopedia.Main.ViewModels
 
                 return chartSort;
             }        
+        }
+
+        public List<string> ChartType
+        {
+            get 
+            {
+                List<string> chartType = new List<string>
+                {
+                    "Bar",
+                    "Horizontal Bar"
+                };
+
+                return chartType;
+            }
         }
     }
 }

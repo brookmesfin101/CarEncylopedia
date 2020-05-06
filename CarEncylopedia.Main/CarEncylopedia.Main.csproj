@@ -128,6 +128,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Public\busy.gif" />
+    <Content Include="Public\CarEncyclopedia_Black.png" />
+    <Content Include="Public\CarEncyclopedia_White.png" />
+    <Content Include="Public\particle_background.png" />
+    <Content Include="Public\peter-broomfield-m3m-lnR90uM-unsplash.jpg" />
+    <Content Include="Public\trianglify_background.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
