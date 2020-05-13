@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using CarEncylopedia.Main.ViewModels;
-using CarEncylopedia.Service;
+﻿using CarEncylopedia.Main.ViewModels;
 using CarEncylopedia.Service.DTOModels;
 using CarEncylopedia.Service.Infrastructure.HelperClasses;
 using CarEncylopedia.Service.Interfaces;
@@ -9,9 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
-using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CarEncylopedia.Main.Controllers
@@ -70,9 +66,7 @@ namespace CarEncylopedia.Main.Controllers
             };
 
             return PartialView(prices);
-        }
-
-        
+        }        
 
         [HttpPost]
         public ActionResult DisplayByMake(string carMake, string sortBy, string sortOrder)
@@ -179,5 +173,52 @@ namespace CarEncylopedia.Main.Controllers
 
             return PartialView("CompareMakes", vm);
         }
+
+        [HttpGet]
+        public ActionResult ComparePackages()
+        {
+            var carData = _homeService.GetCars();
+            var makes = carData.Select(c => c.Make).Distinct().ToList();
+
+            var vm = new ComparePackagesViewModel
+            {
+                Makes = makes
+            };
+
+            return PartialView("ComparePackages", vm);
+        }
+
+        [HttpPost]
+        public ActionResult ComparePackages(string make, string model)
+        {
+            var _model = JsonConvert.DeserializeObject<string>(model);
+            var _make = JsonConvert.DeserializeObject<string>(make);
+
+            var carData = _homeService.GetCars();
+
+            var cars = carData.Where(c => c.Make == _make && c.Model == _model && c.Year == 2019).ToList();
+            var packages = cars.Select(c => c.Package).ToList();
+
+            var vm = new PackageComparisonViewModel
+            {
+                Cars = cars,
+                Packages = packages
+            };
+
+            return PartialView("PackageComparison", vm);
+        }
+
+        [HttpPost]
+        public ActionResult DisplayModelsDropDown(string make)
+        {
+            var _make = JsonConvert.DeserializeObject<string>(make);
+            var carData = _homeService.GetCars();
+
+            var models = carData.Where(c => c.Make == _make).Select(c => c.Model).Distinct().ToList();            
+
+            return PartialView("ModelsDropDown", models);
+        }
+
+        
     }
 }

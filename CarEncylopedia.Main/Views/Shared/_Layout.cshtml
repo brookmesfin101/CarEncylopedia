@@ -7,12 +7,13 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://unpkg.com/jam-icons/css/jam.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&display=swap" rel="stylesheet">
 </head>
 <body class="site-background">  
     <div class="row no-gutters">
         <div class="col-lg-2">
             <div class="vertical-nav"> 
-                <a href="@Url.Action("Index", "Main")">
+                <a class="logo" href="@Url.Action("Index", "Main")">
                     <img src="~/Public/CarEncyclopedia_White.png" class="mt-3 mb-3" width="200"/>
                 </a>
                 <ul class="list-group border-top pt-3 ml-2 text-left">
@@ -22,6 +23,7 @@
                     <li>
                         <p class="font-weight-bold mb-0">Display Cars By Make</p>
                         @Html.Action("CarMakesDropDownList", "Main")
+                        @Html.Hidden("DisplayByMakeURL", Url.Action("DisplayByMake", "Main"))
                         <button type="button" id="CarMakes" class="btn-info btn-sm">Display</button>
                         <ul id="carMakesSortOptions" class="list-group d-none">
                             <li class="mt-1 d-none car-makes-sort">
@@ -47,6 +49,7 @@
                     <li class="mt-2">
                         <p class="font-weight-bold mb-0">Display Cars By Price</p>
                         @Html.Action("CarPricesDropDownList", "Main")
+                        @Html.Hidden("DisplayByPriceURL", Url.Action("DisplayByPrice", "Main"))
                         <button type="button" id="CarPrices" class="btn-info btn-sm">Display</button>
                         <ul id="carPriceSortOptions" class="list-group d-none">
                             <li class="mt-1 car-prices-sort">
@@ -76,6 +79,7 @@
                     </li>
                     <li>
                         <p id="CompareMakesToggle" class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span><u>Compare Makes</u></p>
+                        @Html.Hidden("CompareMakesToggleURL", Url.Action("CompareMakes", "Main"))
                         <ul id="CompareMakesOptions" class="list-group d-none">
                             <li class="list-unstyled ml-3">
                                 <p class="d-inline">Compare : </p>
@@ -89,7 +93,8 @@
                         </ul>
                     </li>
                     <li>
-                        <p class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span>Compare Model Packages</p>
+                        <p id="ComparePackages" class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span><u>Compare Model Packages</u></p>
+                        @Html.Hidden("ComparePackagesURL", Url.Action("ComparePackages", "Main"))
                     </li>
                     <li>
                         <p class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span>Compare Model by Year</p>

@@ -1,0 +1,62 @@
+﻿@model CarEncylopedia.Main.ViewModels.ComparePackagesViewModel
+
+<style>
+    .violet-jumbotron {
+        background-color: #10131C;
+        color: white;
+    }    
+</style>
+
+<div class="row no-gutters">
+    <div id="PackageComparisonContainer" class="col-9">
+        <div class="jumbotron text-center violet-jumbotron">
+            <h1 class="display-5">Please choose a make and model</h1>
+        </div>
+    </div>
+    <div class="col-3 pl-2">
+        <div class="row no-gutters">
+            <div class="col-12">
+                @Html.DropDownList("MakesList", new SelectList(Model.Makes), new { @class = "form-control col-5 d-inline-block", id = "MakesListDropDownList" })
+                <button id="ViewModels" class="btn btn-info">View Models</button>
+            </div>            
+        </div>
+        <div class="row no-gutters mt-1">
+            <div id="ModelsListContainer" class="col-12">
+
+            </div>
+        </div>
+        <div id="ComparePackageSettingsContainer" class="row no-gutters mt-5 d-none">
+            <div>
+                <p><u>Compare Package Settings</u></p>
+            </div>                  
+            <div id="ComparePackageSettings" class="col-12">
+                @Html.LabelFor(m => m.SortPackagesBy, new { @class="mr-3 lead"})
+                @Html.DropDownList("SortPackagesBy", new SelectList(Model.SortPackagesBy), new { @class = "form-control col-5 d-inline-block", id="SortPackagesByDropDownList"})
+                <div id="ComparePackagesCheckList">
+
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#ViewModels").on("click", function () {
+        var make = $("#MakesListDropDownList").val();
+        
+        $.ajax({
+            beforeSend: function () {
+                $("#busy").removeClass("d-none");
+            },
+            complete: function () {
+                $("#busy").addClass("d-none");
+            },
+            url: '@Url.Action("DisplayModelsDropDown", "Main")',
+            type: "POST",
+            data: { make: JSON.stringify(make) },
+            dataType: "html"
+        }).done(function (response) {
+            $("#ModelsListContainer").html(response);
+        });
+    });    
+</script>

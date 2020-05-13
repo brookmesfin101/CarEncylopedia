@@ -7,6 +7,7 @@ $("#CarMakes").on("click", function () {
     if (sortBy === "Model") {
         sortOrder = $(".car-makes-sort-order-alpha").children("option:selected").val();
     }
+    var url = $("#DisplayByMakeURL").val();
 
     $.ajax({
         beforeSend: function () {
@@ -19,7 +20,7 @@ $("#CarMakes").on("click", function () {
                 carSort.removeClass("d-none");
             }
         },
-        url: "Main/DisplayByMake",
+        url: url,
         type: "POST",
         data: { carMake: JSON.stringify(carMake), sortBy: JSON.stringify(sortBy), sortOrder: JSON.stringify(sortOrder) },
         dataType: "html"
@@ -41,6 +42,7 @@ $(".car-makes-sort-by").on("change", function () {
     if (sortBy === "Model") {
         sortOrder = $(".car-makes-sort-order-alpha").children("option:selected").val();
     }
+    var url = $("#DisplayByMakeURL").val();
 
     $.ajax({
         beforeSend: function () {
@@ -49,7 +51,7 @@ $(".car-makes-sort-by").on("change", function () {
         complete: function () {
             $("#busy").addClass("d-none");
         },
-        url: "Main/DisplayByMake",
+        url: url,
         type: "POST",
         data: { carMake: JSON.stringify(carMake), sortBy: JSON.stringify(sortBy), sortOrder: JSON.stringify(sortOrder) },
         dataType: "html"
@@ -72,6 +74,7 @@ $(".car-makes-sort-order-alpha").on("change", function () {
     var carMake = $("#CarMakesSelect").children("option:selected").val();
     var sortBy = $(".car-makes-sort-by").children("option:selected").val();
     var sortOrder = $(this).children("option:selected").val();    
+    var url = $("#DisplayByMakeURL").val();
 
     $.ajax({
         beforeSend: function () {
@@ -80,7 +83,7 @@ $(".car-makes-sort-order-alpha").on("change", function () {
         complete: function () {
             $("#busy").addClass("d-none");
         },
-        url: "Main/DisplayByMake",
+        url: url,
         type: "POST",
         data: { carMake: JSON.stringify(carMake), sortBy: JSON.stringify(sortBy), sortOrder: JSON.stringify(sortOrder)},
         dataType: "html"
@@ -93,6 +96,7 @@ $(".car-makes-sort-order-numeric").on("change", function () {
     var carMake = $("#CarMakesSelect").children("option:selected").val();
     var sortBy = $(".car-makes-sort-by").children("option:selected").val();
     var sortOrder = $(this).children("option:selected").val();
+    var url = $("#DisplayByMakeURL").val(); 
 
     $.ajax({
         beforeSend: function () {
@@ -101,7 +105,7 @@ $(".car-makes-sort-order-numeric").on("change", function () {
         complete: function () {
             $("#busy").addClass("d-none");
         },
-        url: "Main/DisplayByMake",
+        url: url,
         type: "POST",
         data: { carMake: JSON.stringify(carMake), sortBy: JSON.stringify(sortBy), sortOrder: JSON.stringify(sortOrder) },
         dataType: "html"
@@ -119,6 +123,7 @@ $("#CarPrices").on("click", function () {
     if (sortBy === "Model") {
         sortOrder = $(".car-prices-sort-order-alpha").children("option:selected").val();
     }
+    var url = $("#DisplayByPriceURL").val(); 
 
     $.ajax({
         beforeSend: function () {
@@ -127,7 +132,7 @@ $("#CarPrices").on("click", function () {
         complete: function () {
             $("#busy").addClass("d-none");
         },
-        url: "Main/DisplayByPrice",
+        url: url,
         type: "POST",
         data: { carPrice: JSON.stringify(carPrice), sortBy: JSON.stringify(sortBy), sortOrder: JSON.stringify(sortOrder)  },
         dataType: "html"
@@ -149,6 +154,7 @@ $(".car-prices-sort-by").on("change", function () {
     if (sortBy === "Model") {
         sortOrder = $(".car-prices-sort-order-alpha").children("option:selected").val();
     }
+    var url = $("#DisplayByPriceURL").val(); 
 
     $.ajax({
         beforeSend: function () {
@@ -157,7 +163,7 @@ $(".car-prices-sort-by").on("change", function () {
         complete: function () {
             $("#busy").addClass("d-none");
         },
-        url: "Main/DisplayByPrice",
+        url: url,
         type: "POST",
         data: { carPrice: JSON.stringify(carPrice), sortBy: JSON.stringify(sortBy), sortOrder: JSON.stringify(sortOrder) },
         dataType: "html"
@@ -180,6 +186,7 @@ $(".car-prices-sort-order-alpha").on("change", function () {
     var carPrice = $("#CarPricesSelect").children("option:selected").val();
     var sortBy = $(".car-prices-sort-by").children("option:selected").val();
     var sortOrder = $(this).children("option:selected").val();
+    var url = $("#DisplayByPriceURL").val();   
 
     $.ajax({
         beforeSend: function () {
@@ -188,7 +195,7 @@ $(".car-prices-sort-order-alpha").on("change", function () {
         complete: function () {
             $("#busy").addClass("d-none");
         },
-        url: "Main/DisplayByPrice",
+        url: url,
         type: "POST",
         data: { carPrice: JSON.stringify(carPrice), sortBy: JSON.stringify(sortBy), sortOrder: JSON.stringify(sortOrder) },
         dataType: "html"
@@ -201,6 +208,7 @@ $(".car-prices-sort-order-numeric").on("change", function () {
     var carPrice = $("#CarPricesSelect").children("option:selected").val();
     var sortBy = $(".car-prices-sort-by").children("option:selected").val();
     var sortOrder = $(this).children("option:selected").val();
+    var url = $("#DisplayByPriceURL").val();   
 
     $.ajax({
         beforeSend: function () {
@@ -209,7 +217,7 @@ $(".car-prices-sort-order-numeric").on("change", function () {
         complete: function () {
             $("#busy").addClass("d-none");
         },
-        url: "Main/DisplayByPrice",
+        url: url,
         type: "POST",
         data: { carPrice: JSON.stringify(carPrice), sortBy: JSON.stringify(sortBy), sortOrder: JSON.stringify(sortOrder) },
         dataType: "html"
@@ -227,6 +235,7 @@ $("#CompareMakesToggle").on("click", function () {
 
 $("#CompareMakes").on("click", function () {
     var compare = $("#CompareMakesOn").children("option:selected").val();
+    var url = $("#CompareMakesToggleURL").val();    
 
     $.ajax({
         beforeSend: function () {
@@ -235,7 +244,7 @@ $("#CompareMakes").on("click", function () {
         complete: function () {
             $("#busy").addClass("d-none");
         },
-        url: "Main/CompareMakes",
+        url: url,
         type: "POST",
         data: { compare: JSON.stringify(compare) },
         dataType: "html"
@@ -243,3 +252,21 @@ $("#CompareMakes").on("click", function () {
         $("#main-body").html(response);
     });
 });
+
+$("#ComparePackages").on("click", function () {
+    var url = $("#ComparePackagesURL").val();
+
+    $.ajax({
+        beforeSend: function () {
+            $("#busy").removeClass("d-none");
+        },
+        complete: function () {
+            $("#busy").addClass("d-none");
+        },
+        url: url,
+        type: "GET",
+        dataType: "html"
+    }).done(function (response) {
+        $("#main-body").html(response);
+    });
+})

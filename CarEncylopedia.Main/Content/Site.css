@@ -22,6 +22,10 @@ textarea {
     background-size: cover;
 }
 
+.logo:hover{
+    opacity: .7;
+}
+
 .vertical-nav {
     text-align: center;
     background-color: #10131C;
@@ -61,6 +65,16 @@ textarea {
         color: #29ABE0;
     }
 
+#ComparePackages {
+    cursor: pointer;
+}
+    #ComparePackages:hover {
+        color: #29ABE0;
+    }
+        .page-header {
+            font-family: 'Advent Pro', sans-serif;
+        }
+
 /* Compare Makes */
 .MakesIncludedToggle {
     cursor: pointer;
@@ -70,3 +84,5 @@ textarea {
         color: #29ABE0;
         border-color: #29ABE0;
     }
+
+

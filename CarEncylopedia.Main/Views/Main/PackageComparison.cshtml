@@ -1,0 +1,133 @@
+﻿@model CarEncylopedia.Main.ViewModels.PackageComparisonViewModel
+
+    <div class="row">
+        <div class="col-12">
+            <canvas id="myChart" width="800" height="600"></canvas>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var cars = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Cars))
+    var packages = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Packages))
+
+    var removedCars = [];
+
+    var packages = [];
+    var colors = [];
+    var yaxisData = [];
+
+    var label = `Compare ${cars[0].Make} ${cars[0].Model} Package Prices`;  
+
+    function random_rgba() {
+        return 'rgba(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.random().toFixed(1) + ')';
+    }
+
+    function createCheckList() {
+        $("#ComparePackagesCheckList").html("");
+
+        var plusIcon = $("<span></span>").attr("class", "jam jam-plus mr-2 pl-1");
+        var toggle = $("<p></p>").attr("id", "MakesIncludedToggle").text("Packages Included").prepend(plusIcon);
+        $("#ComparePackagesCheckList").append(toggle);
+
+        packages.forEach(el => {
+            var checkList = $("<div></div>").attr("class", "form-check");
+            
+            var checkbox = $("<input></input>").attr("class", "form-check-input").attr("type", "checkbox").attr("name", el);
+            var label = $("<label></label>").attr("class", "form-check-label").text(el);
+            
+            checkList.append(checkbox).append(label);
+            $("#ComparePackagesCheckList").append(checkList);
+        });
+    }
+
+    function createDataAndLabels(cars, yProperty) {                    
+        packages = [];
+        colors = [];
+        yaxisData = [];       
+        
+        cars.forEach(el => {            
+            if (yProperty == "Horsepower") {
+                yaxisData.push(el[yProperty].substring(0, 3));
+            } else {
+                yaxisData.push(el[yProperty]); 
+            }
+            packages.push(el.Package);
+            colors.push(random_rgba());
+        })       
+    }
+
+    function updateData(chart, data, yAxisLabel) {     
+        createCheckList();
+
+        var yLabel = yAxisLabel;
+        if (yAxisLabel == "Price") {
+            yLabel += " ($)";
+        } else if (yAxisLabel == "Weight") {
+            yLabel += " (lbs)";
+        } else if (yAxisLabel == "CityMPG" || yAxisLabel == "HwyMPG") {
+            yLabel += " (mpg)";
+        }
+
+        chart.data.datasets[0].data = data;
+        chart.options.scales.yAxes[0].scaleLabel.labelString = yLabel;
+        chart.update();
+    }
+
+    createDataAndLabels(cars, "Price");
+    createCheckList();
+
+    $("#SortPackagesByDropDownList").on("change", function () {
+        var sortBy = $(this).val();
+        
+        createDataAndLabels(cars, sortBy);
+        updateData(myChart, yaxisData, sortBy);
+    });
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: packages,
+            datasets: [{
+                label: label,
+                data: yaxisData,
+                backgroundColor: colors,
+                borderColor: 'rgba(0,0,0,.25)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                       display: true,
+                       labelString: 'Price ($)',
+                       fontSize: 30,
+                       fontColor: '#000000',
+                       fontFamily: 'Advent Pro'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                       display: true,
+                       labelString: 'Package',
+                       fontSize: 30,
+                       fontColor: '#000000',
+                       fontFamily: 'Advent Pro'
+                    }
+                }]
+            },
+            legend: {                
+                labels: {
+                    boxWidth: 0,
+                    fontSize: 30,
+                    fontColor: '#000000',
+                    fontFamily: 'Advent Pro'
+                }
+            }
+        }
+    });
+</script>

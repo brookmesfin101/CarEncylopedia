@@ -1,0 +1,27 @@
+﻿@model List<string>
+
+@Html.DropDownList("ModelsDropDown", new SelectList(Model), new { @class = "form-control col-5 d-inline-block", id = "ModelsDropDownSelect" })
+<button id="ViewPackages" class="btn btn-info">Compare Packages</button>
+
+<script>
+    $("#ViewPackages").on("click", function () {
+        var model = $("#ModelsDropDownSelect").val();
+        var make = $("#MakesListDropDownList").val();
+
+        $.ajax({
+            beforeSend: function () {
+                $("#busy").removeClass("d-none");
+            },
+            complete: function () {
+                $("#busy").addClass("d-none");
+            },
+            url: '@Url.Action("ComparePackages", "Main")',
+            type: "POST",
+            data: {make : JSON.stringify(make), model : JSON.stringify(model)},
+            dataType: "html"
+        }).done(function (response) {            
+            $("#PackageComparisonContainer").html(response);
+            $("#ComparePackageSettingsContainer").toggleClass("d-none");
+        });
+    });
+</script>
