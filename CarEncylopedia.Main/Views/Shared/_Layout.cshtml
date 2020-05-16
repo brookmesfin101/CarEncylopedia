@@ -97,7 +97,8 @@
                         @Html.Hidden("ComparePackagesURL", Url.Action("ComparePackages", "Main"))
                     </li>
                     <li>
-                        <p class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span>Compare Model by Year</p>
+                        <p id="CompareYears" class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span><u>Compare Model by Year</u></p>
+                        @Html.Hidden("CompareYearsURL", Url.Action("CompareYears", "Main"))
                     </li>
                 </ul>
             </div>

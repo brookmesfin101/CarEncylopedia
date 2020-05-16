@@ -11,9 +11,8 @@
     var cars = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Cars))
     var packages = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Packages))
 
-    var removedCars = [];
+    var removedPackages = [];
 
-    var packages = [];
     var colors = [];
     var yaxisData = [];
 
@@ -27,18 +26,58 @@
         $("#ComparePackagesCheckList").html("");
 
         var plusIcon = $("<span></span>").attr("class", "jam jam-plus mr-2 pl-1");
-        var toggle = $("<p></p>").attr("id", "MakesIncludedToggle").text("Packages Included").prepend(plusIcon);
+        var toggle = $("<p></p>").attr("id", "MakesIncludedToggle").attr("class", "PackagesIncludedToggle mt-3").text("Packages Included").prepend(plusIcon);
+        
+
+        toggle.on("click", function () {
+            $(".form-check").toggleClass("d-none");
+        });
+
         $("#ComparePackagesCheckList").append(toggle);
 
         packages.forEach(el => {
-            var checkList = $("<div></div>").attr("class", "form-check");
+            var checkList = $("<div></div>").attr("class", "form-check d-none");
             
-            var checkbox = $("<input></input>").attr("class", "form-check-input").attr("type", "checkbox").attr("name", el);
+            var checkbox = $("<input></input>").attr("class", "form-check-input").attr("type", "checkbox").attr("name", el).attr("checked", "checked").on("change", function () {
+                var checked = $(this).is(":checked");
+                var name = $(this).attr("name");
+
+                if (checked == false) {                    
+                    removedPackages.push(name);
+                    updatePackagesList();
+                } else {                    
+                    var i = removedPackages.findIndex(x => x == name);
+                    removedPackages.splice(i, 1);
+                    updatePackagesList();
+                }
+            });
             var label = $("<label></label>").attr("class", "form-check-label").text(el);
             
             checkList.append(checkbox).append(label);
             $("#ComparePackagesCheckList").append(checkList);
         });
+    }
+
+    function updatePackagesList() {
+        var yAxis = $("#SortPackagesByDropDownList").val();
+        var updatedCars = cars.filter(i => {
+            return removedPackages.findIndex(j => j === i.Package) === -1;
+        });
+        createDataAndLabels(updatedCars, yAxis);
+
+        var yLabel = yAxis;
+        if (yLabel == "Price") {
+            yLabel += " ($)";
+        } else if (yLabel == "Weight") {
+            yLabel += " (lbs)";
+        } else if (yLabel == "CityMPG" || yLabel == "HwyMPG") {
+            yLabel += " (mpg)";
+        }
+        debugger;
+        myChart.data.datasets[0].data = yaxisData;
+        myChart.data.labels = packages.filter(i => !removedPackages.includes(i));
+        myChart.options.scales.yAxes[0].scaleLabel.labelString = yLabel;
+        myChart.update();
     }
 
     function createDataAndLabels(cars, yProperty) {                    
@@ -70,6 +109,7 @@
         }
 
         chart.data.datasets[0].data = data;
+        chart.data.labels = packages.filter(i => !removedPackages.includes(i));
         chart.options.scales.yAxes[0].scaleLabel.labelString = yLabel;
         chart.update();
     }
@@ -79,7 +119,8 @@
 
     $("#SortPackagesByDropDownList").on("change", function () {
         var sortBy = $(this).val();
-        
+        debugger;
+        removedPackages = [];
         createDataAndLabels(cars, sortBy);
         updateData(myChart, yaxisData, sortBy);
     });

@@ -256,6 +256,9 @@ $("#CompareMakes").on("click", function () {
 $("#ComparePackages").on("click", function () {
     var url = $("#ComparePackagesURL").val();
 
+    if (!$("#CompareMakes").hasClass("d-none")) {
+        $("#CompareMakesOptions").addClass("d-none");
+    }
     $.ajax({
         beforeSend: function () {
             $("#busy").removeClass("d-none");
@@ -269,4 +272,25 @@ $("#ComparePackages").on("click", function () {
     }).done(function (response) {
         $("#main-body").html(response);
     });
-})
+});
+
+$("#CompareYears").on("click", function () {
+    var url = $("#CompareYearsURL").val();
+
+    if (!$("#CompareMakes").hasClass("d-none")) {
+        $("#CompareMakesOptions").addClass("d-none");
+    }
+    $.ajax({
+        beforeSend: function () {
+            $("#busy").removeClass("d-none");
+        },
+        complete: function () {
+            $("#busy").addClass("d-none");
+        },
+        url: url,
+        type: "GET",
+        dataType: "html"
+    }).done(function (response) {
+        $("#main-body").html(response);
+    });
+});

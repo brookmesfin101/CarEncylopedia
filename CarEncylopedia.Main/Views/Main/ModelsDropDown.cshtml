@@ -21,7 +21,10 @@
             dataType: "html"
         }).done(function (response) {            
             $("#PackageComparisonContainer").html(response);
-            $("#ComparePackageSettingsContainer").toggleClass("d-none");
+
+            if ($("#ComparePackageSettingsContainer").hasClass("d-none") == true) {
+                $("#ComparePackageSettingsContainer").removeClass("d-none");
+            }            
         });
     });
 </script>

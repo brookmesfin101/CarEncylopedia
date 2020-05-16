@@ -219,6 +219,25 @@ namespace CarEncylopedia.Main.Controllers
             return PartialView("ModelsDropDown", models);
         }
 
-        
+        [HttpGet]
+        public ActionResult CompareYears()
+        {
+            var carData = _homeService.GetCars();
+            var makes = carData.Select(c => c.Make).Distinct().ToList();
+            var models = carData.Where(c => c.Make == "Acura").Select(m => m.Model).Distinct().ToList();
+            var years = carData.Where(c => c.Make == "Acura").Select(m => m.Year).Distinct().ToList();
+
+            var cars = carData.Where(c => c.Make == "Acura" && c.Model == "RDX").ToList();
+
+            var vm = new CompareYearsViewModel
+            {
+                Makes = makes,
+                Models = models,
+                Years = years,
+                Cars = cars
+            };
+
+            return PartialView("CompareYears", vm);
+        }
     }
 }

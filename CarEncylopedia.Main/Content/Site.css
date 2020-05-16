@@ -75,6 +75,13 @@ textarea {
             font-family: 'Advent Pro', sans-serif;
         }
 
+#CompareYears {
+    cursor: pointer;
+}
+    #CompareYears:hover {
+        color: #29ABE0;
+    }
+
 /* Compare Makes */
 .MakesIncludedToggle {
     cursor: pointer;
@@ -85,4 +92,13 @@ textarea {
         border-color: #29ABE0;
     }
 
+/* Compare Packages */
+.PackagesIncludedToggle {
+    cursor: pointer;
+    border: 1px solid black;
+}
+    .PackagesIncludedToggle:hover {
+        color: #29ABE0;
+        border-color: #29ABE0;
+    }
 

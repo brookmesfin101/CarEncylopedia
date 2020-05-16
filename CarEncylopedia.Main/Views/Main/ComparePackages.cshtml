@@ -57,6 +57,17 @@
             dataType: "html"
         }).done(function (response) {
             $("#ModelsListContainer").html(response);
+
+            var div = $("<div></div>").attr("class", "jumbotron text-center violet-jumbotron");
+            var h1 = $("<h1></h1>").attr("class", "display-5").text("Please choose a make and model");
+            div.append(h1);
+
+            $("#PackageComparisonContainer").html(div);
+
+
+            if (!$("#ComparePackageSettingsContainer").hasClass("d-none")) {
+                $("#ComparePackageSettingsContainer").addClass("d-none");
+            }
         });
     });    
 </script>
