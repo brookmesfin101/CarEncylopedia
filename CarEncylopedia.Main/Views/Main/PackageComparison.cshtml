@@ -73,7 +73,7 @@
         } else if (yLabel == "CityMPG" || yLabel == "HwyMPG") {
             yLabel += " (mpg)";
         }
-        debugger;
+        
         myChart.data.datasets[0].data = yaxisData;
         myChart.data.labels = packages.filter(i => !removedPackages.includes(i));
         myChart.options.scales.yAxes[0].scaleLabel.labelString = yLabel;
@@ -119,7 +119,7 @@
 
     $("#SortPackagesByDropDownList").on("change", function () {
         var sortBy = $(this).val();
-        debugger;
+        
         removedPackages = [];
         createDataAndLabels(cars, sortBy);
         updateData(myChart, yaxisData, sortBy);

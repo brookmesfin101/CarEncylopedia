@@ -75,6 +75,13 @@ textarea {
             font-family: 'Advent Pro', sans-serif;
         }
 
+#CompareYearsToggle {
+    cursor: pointer;
+}
+    #CompareYearsToggle:hover {
+        color: #29ABE0;
+    }
+
 #CompareYears {
     cursor: pointer;
 }
@@ -101,4 +108,3 @@ textarea {
         color: #29ABE0;
         border-color: #29ABE0;
     }
-

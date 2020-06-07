@@ -233,6 +233,10 @@ $("#CompareMakesToggle").on("click", function () {
     $("#CompareMakesOptions").toggleClass("d-none");
 });
 
+$("#CompareYearsToggle").on("click", function () {
+    $("#CompareYearsOptions").toggleClass("d-none");
+});
+
 $("#CompareMakes").on("click", function () {
     var compare = $("#CompareMakesOn").children("option:selected").val();
     var url = $("#CompareMakesToggleURL").val();    
@@ -276,6 +280,7 @@ $("#ComparePackages").on("click", function () {
 
 $("#CompareYears").on("click", function () {
     var url = $("#CompareYearsURL").val();
+    var make = $("#CompareYearsMake").children("#CarMakesSelect").children("option:selected").val();    
 
     if (!$("#CompareMakes").hasClass("d-none")) {
         $("#CompareMakesOptions").addClass("d-none");
@@ -288,7 +293,8 @@ $("#CompareYears").on("click", function () {
             $("#busy").addClass("d-none");
         },
         url: url,
-        type: "GET",
+        type: "POST",
+        data: { make : JSON.stringify(make)},
         dataType: "html"
     }).done(function (response) {
         $("#main-body").html(response);

@@ -97,7 +97,16 @@
                         @Html.Hidden("ComparePackagesURL", Url.Action("ComparePackages", "Main"))
                     </li>
                     <li>
-                        <p id="CompareYears" class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span><u>Compare Model by Year</u></p>
+                        <p id="CompareYearsToggle" class="d-inline font-weight-bold"><span class="jam jam-plus mr-1"></span><u>Compare Model by Year</u></p>
+                        <ul id="CompareYearsOptions" class="list-group d-none">
+                            <li class="list-unstyled ml-3">
+                                <p class="d-inline">Compare:</p>
+                                <div id="CompareYearsMake" class="d-inline">
+                                    @Html.Action("CarMakesDropDownList", "Main")
+                                </div>                                
+                                <button type="button" id="CompareYears" class="btn-info btn-sm">Display</button>
+                            </li>                            
+                        </ul>
                         @Html.Hidden("CompareYearsURL", Url.Action("CompareYears", "Main"))
                     </li>
                 </ul>
